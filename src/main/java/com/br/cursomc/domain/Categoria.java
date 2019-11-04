@@ -11,6 +11,16 @@ import javax.persistence.Id;
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 2362399190854645425L;
 
+	public Categoria(Integer id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public Categoria() {
+		super();		
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
