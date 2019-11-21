@@ -29,4 +29,5 @@ public class CategoriaResource {
      Optional<Categoria> categoria = categoriaService.getCategoriaById(id);  
      return ResponseEntity.ok().body(categoria);		
 	}
+	
 }
