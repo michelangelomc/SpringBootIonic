@@ -20,14 +20,13 @@ public class CategoriaResource {
 	private CategoriaService categoriaService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getMessage() {		
-     return "OK";
+	public String getMessage() {
+		return "OK";
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findById(@PathVariable Integer id) {		
-     Optional<Categoria> categoria = categoriaService.getCategoriaById(id);  
-     return ResponseEntity.ok().body(categoria);		
+	public ResponseEntity<?> findById(@PathVariable Integer id) {
+		Optional<Categoria> categoria = categoriaService.getCategoriaById(id);
+		return ResponseEntity.ok().body(categoria);
 	}
-	
 }
