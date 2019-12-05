@@ -38,6 +38,8 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "Telefone")
 	private Set<String> telefone = new HashSet<>();
 
+	private List<Pedido> pedido = new ArrayList<>();
+
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -106,6 +108,14 @@ public class Cliente implements Serializable {
 
 	public void setTelefone(Set<String> telefone) {
 		this.telefone = telefone;
+	}
+
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
 	}
 
 	@Override
