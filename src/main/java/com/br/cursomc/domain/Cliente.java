@@ -38,11 +38,11 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "Telefone")
 	private Set<String> telefone = new HashSet<>();
 
+	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedido = new ArrayList<>();
 
 	public Cliente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Cliente(Integer id, String nome, String email, String cpfCnpj, TipoCliente tipoCliente) {
