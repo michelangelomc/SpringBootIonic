@@ -3,9 +3,11 @@ package com.br.cursomc.domain;
 import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 import com.sun.istack.NotNull;
 
+@Entity
 public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 6292548389652857210L;
