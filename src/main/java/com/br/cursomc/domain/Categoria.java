@@ -32,7 +32,6 @@ public class Categoria implements Serializable {
 
 	private String nome;
     
-	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	
@@ -89,5 +88,4 @@ public class Categoria implements Serializable {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
 }
