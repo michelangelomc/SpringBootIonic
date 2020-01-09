@@ -1,13 +1,16 @@
 package com.br.cursomc.resources;
 
+import java.net.URI;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.cursomc.domain.Categoria;
 import com.br.cursomc.domain.services.CategoriaService;
@@ -28,5 +31,15 @@ public class CategoriaResource {
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
 		Optional<Categoria> categoria = categoriaService.getCategoriaById(id);
 		return ResponseEntity.ok().body(categoria);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<?> insert(@RequestBody Categoria categoria){
+		categoria = categoriaService.insert(categoria);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				                             .path("/{id}")
+				                             .buildAndExpand(categoria.getId())
+				                             .toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }

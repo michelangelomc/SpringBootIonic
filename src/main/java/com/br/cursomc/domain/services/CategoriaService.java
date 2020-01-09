@@ -14,14 +14,19 @@ public class CategoriaService {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+
 	private final String msgErro = "Objeto não foi encontrado id: ";
 
 	public Optional<Categoria> getCategoriaById(Integer id) {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		
+
 		categoria.orElseThrow(() -> new ObjectNotFoundException(msgErro + id, Categoria.class.getName()));
-		
+
 		return categoria;
+	}
+
+	public Categoria insert(Categoria categoria) {
+		categoria.setId(null);
+		return categoriaRepository.save(categoria);
 	}
 }
