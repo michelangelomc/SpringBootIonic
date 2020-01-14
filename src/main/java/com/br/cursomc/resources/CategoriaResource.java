@@ -28,18 +28,29 @@ public class CategoriaResource {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	public ResponseEntity<Optional<Categoria>> findById(@PathVariable Integer id) {
 		Optional<Categoria> categoria = categoriaService.getCategoriaById(id);
 		return ResponseEntity.ok().body(categoria);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> insert(@RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> insert(@RequestBody Categoria categoria) {
 		categoria = categoriaService.insert(categoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				                             .path("/{id}")
-				                             .buildAndExpand(categoria.getId())
-				                             .toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
+				.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Categoria> update(@RequestBody Categoria categoria, @PathVariable Integer id) {
+		categoria.setId(id);
+		categoria = categoriaService.update(categoria);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Categoria> delete(@PathVariable Integer id) {
+		categoriaService.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 }

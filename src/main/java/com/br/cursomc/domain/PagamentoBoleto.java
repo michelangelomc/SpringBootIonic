@@ -20,7 +20,6 @@ public class PagamentoBoleto extends Pagamento{
 	
 	public PagamentoBoleto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public PagamentoBoleto(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Date dataVencimento, Date dataPagamento) {

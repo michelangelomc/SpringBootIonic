@@ -25,7 +25,7 @@ public class ClienteResource {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	public ResponseEntity<Optional<Cliente>> findById(@PathVariable Integer id) {
 		Optional<Cliente> cliente = clienteService.getClienteById(id);
 		return ResponseEntity.ok().body(cliente);
 	}
