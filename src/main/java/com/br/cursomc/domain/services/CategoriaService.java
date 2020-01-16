@@ -1,6 +1,8 @@
 package com.br.cursomc.domain.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.br.cursomc.domain.Categoria;
 import com.br.cursomc.domain.services.exeptions.DataIntegrityException;
 import com.br.cursomc.domain.services.exeptions.ObjectNotFoundException;
+import com.br.cursomc.dto.CategoriaDTO;
 import com.br.cursomc.repositories.CategoriaRepository;
 
 @Service
@@ -43,7 +46,15 @@ public class CategoriaService {
 		try {
 			categoriaRepository.deleteById(id);
 		} catch (DataIntegrityViolationException dx) {
-			throw new DataIntegrityException(msgErroIntegrity + " ID: "+ id, Categoria.class.getName());
+			throw new DataIntegrityException(msgErroIntegrity + " ID: " + id, Categoria.class.getName());
 		}
+	}
+
+	public List<CategoriaDTO> findAll() {
+		List<Categoria> categoria = categoriaRepository.findAll();
+		List<CategoriaDTO> listDTO = categoria.stream()
+				                              .map(cat -> new CategoriaDTO(cat))
+				                              .collect(Collectors.toList());
+		return listDTO;
 	}
 }

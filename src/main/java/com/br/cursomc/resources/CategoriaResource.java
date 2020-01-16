@@ -1,6 +1,7 @@
 package com.br.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.cursomc.domain.Categoria;
 import com.br.cursomc.domain.services.CategoriaService;
+import com.br.cursomc.dto.CategoriaDTO;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -22,10 +24,10 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService categoriaService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String getMessage() {
-		return "OK";
-	}
+//	@RequestMapping(method = RequestMethod.GET)
+//	public String getMessage() {
+//		return "OK";
+//	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Optional<Categoria>> findById(@PathVariable Integer id) {
@@ -47,10 +49,16 @@ public class CategoriaResource {
 		categoria = categoriaService.update(categoria);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Categoria> delete(@PathVariable Integer id) {
 		categoriaService.deleteById(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<CategoriaDTO> categoria = categoriaService.findAll();
+		return ResponseEntity.ok().body(categoria);
 	}
 }
