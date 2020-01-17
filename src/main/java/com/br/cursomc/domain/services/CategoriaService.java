@@ -65,4 +65,9 @@ public class CategoriaService {
 		Page<CategoriaDTO> listDTO = pageCat.map(cat -> new CategoriaDTO(cat));
 		return listDTO;
 	}
+	
+	public Categoria fromDTO(CategoriaDTO categoriaDto) {
+		return new Categoria(categoriaDto.getId(), categoriaDto.getNome());
+	}
+	
 }
