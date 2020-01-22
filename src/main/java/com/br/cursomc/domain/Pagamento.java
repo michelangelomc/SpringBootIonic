@@ -21,7 +21,7 @@ public class Pagamento implements Serializable {
 
 	@Id
 	private Integer id;
-	
+
 	private Integer estadoPagamento;
 
 	@JsonIgnore
@@ -37,7 +37,7 @@ public class Pagamento implements Serializable {
 	public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estadoPagamento = estadoPagamento.getTipo();
+		this.estadoPagamento = estadoPagamento == null ? null : estadoPagamento.getTipo();
 		this.pedido = pedido;
 	}
 

@@ -1,5 +1,6 @@
 package com.br.cursomc.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.cursomc.domain.Cliente;
 import com.br.cursomc.domain.services.ClienteService;
+import com.br.cursomc.dto.CategoriaDTO;
+import com.br.cursomc.dto.ClienteComplementoDTO;
 import com.br.cursomc.dto.ClienteDTO;
 
 @RestController
@@ -37,6 +41,16 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(cliente);
 	}
 
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<CategoriaDTO> insert(@Valid @RequestBody ClienteComplementoDTO clienteComplementoDTO) {
+		Cliente cliente = clienteService.fromDTO(clienteComplementoDTO);
+		cliente = clienteService.insert(cliente);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId())
+				.toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Cliente> update(@Valid @RequestBody ClienteDTO clienteDto, @PathVariable Integer id) {
 		Cliente cliente = clienteService.fromDTO(clienteDto);

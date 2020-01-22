@@ -40,8 +40,16 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Categoria categoria) {
-		getCategoriaById(categoria.getId());
-		return categoriaRepository.save(categoria);
+		Optional<Categoria> clienteRecover = getCategoriaById(categoria.getId());
+		updateData(clienteRecover, categoria);
+		return categoriaRepository.save(clienteRecover.get());
+	}
+
+	private void updateData(Optional<Categoria> categoriaRecover, Categoria categoria) {
+		if (categoriaRecover.isPresent()) {
+			categoriaRecover.get().setNome(categoria.getNome());
+			;
+		}
 	}
 
 	public void deleteById(Integer id) {
@@ -65,8 +73,8 @@ public class CategoriaService {
 		Page<CategoriaDTO> listDTO = pageCat.map(cat -> new CategoriaDTO(cat));
 		return listDTO;
 	}
-	
+
 	public Categoria fromDTO(CategoriaDTO categoriaDto) {
 		return new Categoria(categoriaDto.getId(), categoriaDto.getNome());
-	}	
+	}
 }
