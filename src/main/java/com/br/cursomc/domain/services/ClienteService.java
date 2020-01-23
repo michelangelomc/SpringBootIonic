@@ -114,6 +114,7 @@ public class ClienteService {
 			                            clienteComplementoDTO.getCep(), 
 			                            cliente, 
 			                            cidade.get());
+	   
 	   cliente.getEndereco().add(endereco);
 	   cliente.getTelefone().add(clienteComplementoDTO.getTel_celular());
 
