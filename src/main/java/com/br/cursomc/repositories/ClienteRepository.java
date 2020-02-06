@@ -10,7 +10,7 @@ import com.br.cursomc.domain.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
 	@Transactional(readOnly = true)
-	Cliente findbyEmail(String email);
+	Cliente findByEmail(String email);
 
 	@Transactional(readOnly = true)
 	Cliente findByCpfCnpj(String cpfCnpj);

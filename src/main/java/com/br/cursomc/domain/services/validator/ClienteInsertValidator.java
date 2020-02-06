@@ -44,7 +44,7 @@ public abstract class ClienteInsertValidator implements ConstraintValidator<Clie
 				&& !ResorcesUtils.isValidCnpj(value.getCpfCnpj()))
 			list.add(new FieldMensage("Tipo Cliente", msgCnpjInvalid));
 
-		Cliente clientEmail = clienteRepositoy.findbyEmail(value.getEmail());
+		Cliente clientEmail = clienteRepositoy.findByEmail(value.getEmail());
 		Cliente clientCpfCnpj = clienteRepositoy.findByCpfCnpj(value.getCpfCnpj());
 		
 		if (clientEmail != null) 
@@ -58,6 +58,7 @@ public abstract class ClienteInsertValidator implements ConstraintValidator<Clie
 			context.buildConstraintViolationWithTemplate(fieldMessage.getMessage())
 					.addPropertyNode(fieldMessage.getFieldName()).addConstraintViolation();
 		}
+		
 		return list.isEmpty();
 	}
 }

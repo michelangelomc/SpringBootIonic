@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
 	private String email;
 	
 	@Column(unique = true)
-	private String CpfCnpj;
+	private String cpfCnpj;
 	
 	private Integer tipoCliente;
 
@@ -57,7 +57,7 @@ public class Cliente implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		CpfCnpj = cpfCnpj;
+		this.cpfCnpj = cpfCnpj;
 		this.tipoCliente = (tipoCliente == null) ? null : tipoCliente.getCodigo();
 	}
 
@@ -86,11 +86,11 @@ public class Cliente implements Serializable {
 	}
 
 	public String getCpfCnpj() {
-		return CpfCnpj;
+		return cpfCnpj;
 	}
 
 	public void setCpfCnpj(String cpfCnpj) {
-		CpfCnpj = cpfCnpj;
+		cpfCnpj = cpfCnpj;
 	}
 
 	public TipoCliente getTipoCliente() {
