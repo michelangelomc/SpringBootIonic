@@ -90,7 +90,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setCpfCnpj(String cpfCnpj) {
-		cpfCnpj = cpfCnpj;
+		this.cpfCnpj = cpfCnpj;
 	}
 
 	public TipoCliente getTipoCliente() {
