@@ -1,0 +1,8 @@
+Senha Heroku
+*Mm986417*
+
+Pegar a URL do banco no heroku:
+  ->heroku config | grep CLEARDB_DATABASE_URL
+
+Backup prompt command
+--> mysqldump -u root -p curso_spring > C:\ESTUDOS\Java\Backup\backup_sql
