@@ -1,0 +1,2 @@
+- Remote para subir no heroku
+git remote add heroku https://git.heroku.com/springionic2020.git
