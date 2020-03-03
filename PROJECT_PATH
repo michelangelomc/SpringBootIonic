@@ -1,1 +1,1 @@
-heroku config:set PROJECT_PATH=cursomc/pom.xml
+heroku config:set PROJECT_PATH=CursomcApplication.java
