@@ -4,15 +4,19 @@ Senha Heroku
 Pegar a URL do banco no heroku:
   ->heroku config | grep CLEARDB_DATABASE_URL
 
+CLEARDB_DATABASE_URL: mysql://b09f98319bbb7c:369eb86d@us-cdbr-iron-east-04.cleardb.net/heroku_abcfdd622070248?reconnect=true
+
+
 Backup prompt command
 --> mysqldump -u root -p curso_spring > C:\ESTUDOS\Java\Backup\backup_sql
 
 
- mysql://ba330f3d5a74a1:846f7127@us-cdbr-iron-east-04.cleardb.net/heroku_fd00fb544cb3eaa?reconnect=true
+ 
+ 
 
 
 heroku buildpacks:set https://github.com/michelangelomc/SpringBootIonic.git -a myapp
 
  mysql://ba330f3d5a74a1:846f7127@/heroku_fd00fb544cb3eaa?reconnect=true
  
-  mysql --host=us-cdbr-iron-east-04.cleardb.net --user=ba330f3d5a74a1 --password=846f7127 --reconnect heroku_fd00fb544cb3eaa < arquivo.sql 
+  mysql --host=us-cdbr-iron-east-04.cleardb.net --user=b09f98319bbb7c --password=369eb86d --reconnect heroku_abcfdd622070248 < arquivo.sql 
