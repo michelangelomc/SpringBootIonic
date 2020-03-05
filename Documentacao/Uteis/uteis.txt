@@ -6,3 +6,13 @@ Pegar a URL do banco no heroku:
 
 Backup prompt command
 --> mysqldump -u root -p curso_spring > C:\ESTUDOS\Java\Backup\backup_sql
+
+
+ mysql://ba330f3d5a74a1:846f7127@us-cdbr-iron-east-04.cleardb.net/heroku_fd00fb544cb3eaa?reconnect=true
+
+
+heroku buildpacks:set https://github.com/michelangelomc/SpringBootIonic.git -a myapp
+
+ mysql://ba330f3d5a74a1:846f7127@/heroku_fd00fb544cb3eaa?reconnect=true
+ 
+  mysql --host=us-cdbr-iron-east-04.cleardb.net --user=ba330f3d5a74a1 --password=846f7127 --reconnect heroku_fd00fb544cb3eaa < arquivo.sql 

@@ -1,0 +1,6 @@
+- Remote para subir no heroku
+git remote add heroku https://git.heroku.com/springionic2020.git
+
+Exemplo para testar HttpSecurity
+-----------------------------------
+https://github.com/spring-projects/spring-security/blob/master/test/src/test/java/org/springframework/security/test/web/support/WebTestUtilsTests.java
