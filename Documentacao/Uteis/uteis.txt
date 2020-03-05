@@ -13,10 +13,14 @@ Backup prompt command
 
  
  
-
+heroku buildpacks:set https://git.heroku.com/springionic040320.git
 
 heroku buildpacks:set https://github.com/michelangelomc/SpringBootIonic.git -a myapp
 
  mysql://ba330f3d5a74a1:846f7127@/heroku_fd00fb544cb3eaa?reconnect=true
  
-  mysql --host=us-cdbr-iron-east-04.cleardb.net --user=b09f98319bbb7c --password=369eb86d --reconnect heroku_abcfdd622070248 < arquivo.sql 
+  mysql --host=us-cdbr-iron-east-04.cleardb.net --user=b09f98319bbb7c --password=369eb86d --reconnect heroku_abcfdd622070248 < C:\ESTUDOS\Java\Backup\backup.sql
+
+
+heroku config:unset BUILDPACK_URL -a <your-app-name-here>
+git push staging-heroku staging:master  
