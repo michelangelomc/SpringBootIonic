@@ -37,7 +37,6 @@ public class Endereco implements Serializable {
 
 	public Endereco() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,

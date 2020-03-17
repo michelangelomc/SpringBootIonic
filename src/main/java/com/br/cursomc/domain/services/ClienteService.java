@@ -48,6 +48,10 @@ public class ClienteService {
 
 		return cliente;
 	}
+	
+	public Cliente findId(Integer id) {		
+		return clienteRepository.findById(id).orElse(null);
+	}
 
 	@Transactional
 	public Cliente insert(Cliente cliente) {

@@ -1,8 +1,11 @@
 package com.br.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pedido implements Serializable {
@@ -36,10 +39,10 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-
-	@NotNull
+		
 	@ManyToOne
 	@JoinColumn(name = "endereco_entrega_id")
+	@JsonIgnore
 	private Endereco enderecoEntrega;
 
 	@OneToMany(mappedBy = "id.pedido")
@@ -137,4 +140,29 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		NumberFormat numberF = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		SimpleDateFormat spDate =new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número");
+		builder.append(getId());
+		builder.append(", Instante: ");
+		builder.append(spDate.format(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPagamento().getEstadoPagamento().getDescricao());
+
+		builder.append("\nDetalhes\n");
+		for (ItemPedido itemPedido : getItens()) {
+			builder.append(itemPedido.toString());
+		}
+		builder.append("Valor Total:");
+		builder.append(numberF.format(getValorTotal()));
+
+		return builder.toString();
+	}
+
 }

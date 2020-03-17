@@ -1,12 +1,13 @@
 package com.br.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 @Entity
 public class ItemPedido implements Serializable {
@@ -14,7 +15,6 @@ public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 6292548389652857210L;
 
 	@JsonIgnore
-	@NotNull
 	@EmbeddedId
 	private ItemPedidoPk id = new ItemPedidoPk();
 
@@ -111,6 +111,21 @@ public class ItemPedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat numberF = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		StringBuilder builder = new StringBuilder();
+		builder.append(getProduto().getNome());
+		builder.append(", Qtde:");
+		builder.append(getQuantidade());
+		builder.append(", Preço:");
+		builder.append(numberF.format(getPrecos()));
+		builder.append(", Subtotal:");
+		builder.append(numberF.format(getSubTotal()));
+		builder.append("\n");
+		return builder.toString();
 	}
 
 }

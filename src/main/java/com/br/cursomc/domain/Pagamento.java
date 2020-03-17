@@ -26,10 +26,11 @@ public class Pagamento implements Serializable {
 
 	private Integer estadoPagamento;
 
-	@JsonIgnore
+	
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
+	@JsonIgnore
 	private Pedido pedido;
 
 	public Pagamento() {
