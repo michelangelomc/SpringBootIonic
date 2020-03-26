@@ -17,8 +17,14 @@ import com.br.cursomc.repositories.ItemPedidoRepositoy;
 import com.br.cursomc.repositories.PagamentoRepository;
 import com.br.cursomc.repositories.PedidoRepository;
 import com.br.cursomc.repositories.ProdutoRepository;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import br.com.newtec.email_service.request.entity.EmailUser;
+import br.com.newtec.email_service.service.EmailService;
+import br.com.newtec.email_service.service.impl.SmtpEmailService;
 
 @Service
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PedidoService {
 
 	@Autowired
@@ -74,7 +80,24 @@ public class PedidoService {
 
 		itemPedidoRepositoy.saveAll(pedido.getItens());
 
-		System.out.println(pedido);
+		EmailUser emailUser = getEmailUser(pedido);
+
+		EmailService emailService = new SmtpEmailService();
+		emailService.sendEmailConfirmation(emailUser);
+
 		return pedido;
+	}
+
+	private EmailUser getEmailUser(Pedido pedido) {
+		EmailUser emailUser = new EmailUser();
+		emailUser.setDesc_email("Pedido de Compra");
+		emailUser.setDesc_to(pedido.getCliente().getEmail());
+		emailUser.setMensage(pedido.toString());
+		return emailUser;
+	}
+
+	protected String htmlFromTemplate(Pedido pedido) {
+
+		return "";
 	}
 }

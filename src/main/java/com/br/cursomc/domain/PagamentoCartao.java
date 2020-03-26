@@ -7,29 +7,26 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
 @JsonTypeName("pagamentoComCartao")
-public class PagamentoCartao extends Pagamento{
+public class PagamentoCartao extends Pagamento {
 
 	private static final long serialVersionUID = -4288796293200915221L;
-	
-	private Integer numero_parcelas;
+
+	private Integer numeroParcelas;
 
 	public PagamentoCartao() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public PagamentoCartao(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Integer numeroParcela) {
+	public PagamentoCartao(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Integer numeroParcelas) {
 		super(id, estadoPagamento, pedido);
-	
-		this.numero_parcelas = numeroParcela;
+		this.numeroParcelas = numeroParcelas;
 	}
 
-	public Integer getNumero_parcelas() {
-		return numero_parcelas;
+	public Integer getNumeroParcelas() {
+		return numeroParcelas;
 	}
 
-	public void setNumero_parcelas(Integer numero_parcelas) {
-		this.numero_parcelas = numero_parcelas;
+	public void setNumeroParcelas(Integer numeroParcelas) {
+		this.numeroParcelas = numeroParcelas;
 	}
-	
+
 }

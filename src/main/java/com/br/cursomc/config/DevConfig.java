@@ -10,8 +10,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.br.cursomc.domain.services.DBService;
 
+import br.com.newtec.email_service.service.EmailService;
+import br.com.newtec.email_service.service.impl.SmtpEmailService;
+
 @Configuration
-@Profile("teste")
+@Profile("dev")
 public class DevConfig {
 
 	@Autowired
@@ -27,5 +30,10 @@ public class DevConfig {
 			return false;
 		}
 		return true;
+	}
+	
+	@Bean
+	public EmailService emailService() {
+		return new SmtpEmailService();
 	}
 }

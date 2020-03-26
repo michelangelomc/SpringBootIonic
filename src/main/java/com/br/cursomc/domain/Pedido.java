@@ -19,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pedido implements Serializable {
@@ -39,10 +38,9 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-		
+
 	@ManyToOne
 	@JoinColumn(name = "endereco_entrega_id")
-	@JsonIgnore
 	private Endereco enderecoEntrega;
 
 	@OneToMany(mappedBy = "id.pedido")
@@ -144,7 +142,7 @@ public class Pedido implements Serializable {
 	@Override
 	public String toString() {
 		NumberFormat numberF = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-		SimpleDateFormat spDate =new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
+		SimpleDateFormat spDate = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
 		StringBuilder builder = new StringBuilder();
 		builder.append("Pedido número");
 		builder.append(getId());

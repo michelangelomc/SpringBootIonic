@@ -26,7 +26,6 @@ public class Pagamento implements Serializable {
 
 	private Integer estadoPagamento;
 
-	
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
@@ -38,7 +37,6 @@ public class Pagamento implements Serializable {
 	}
 
 	public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
-		super();
 		this.id = id;
 		this.estadoPagamento = estadoPagamento == null ? null : estadoPagamento.getTipo();
 		this.pedido = pedido;
